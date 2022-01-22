@@ -27,10 +27,23 @@ const container = document.querySelector('.gallery')
 const img = CreateGalleryCollection(galleryItems);
 container.insertAdjacentHTML('beforeend', img)
 container.addEventListener('click', onClick)
-function onClick(evt) {
-    console.log(evt.target);
-    if (!evt.target.classList.contains('gallery__item') ) {
+
+function onClick(event) {
+    evt.preventDefault();
+    if (!evt.target.classList.contains("gallery__item")) {
         return;
     }
+    openOriginalImgModal(event);
 }
-    
+
+function openOriginalImgModal(event) {
+    const imgEl = basicLightbox.create(
+        `<img width="1280" height="968" alt="${event.target.alt}" src= "${event.target.dataset.source}" ></img>`
+    );
+    imgEl.show();
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      imgEl.close();
+    }
+  });
+}
