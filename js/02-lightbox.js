@@ -12,7 +12,7 @@ console.log(galleryItems);
 // Для этого ознакомься с документацией SimpleLightbox - в первую очередь секции «Usage» и «Markup».
 // Посмотри в документации секцию «Options» и добавь отображение подписей к изображениям из атрибута alt. 
 // Пусть подпись будет снизу и появляется через 250 миллисекунд после открытия изображения.
-function CreateGalleryCollection(arr) {
+function createGalleryCollection(arr) {
   
     return arr.map(({ preview, original, description }) => {
         return `
@@ -25,14 +25,14 @@ function CreateGalleryCollection(arr) {
     
 };
 const container = document.querySelector('.gallery')
-const img = CreateGalleryCollection(galleryItems);
+const img = createGalleryCollection(galleryItems);
 container.insertAdjacentHTML('beforeend', img)
 container.addEventListener('click', nameImages)
 
 function nameImages(event) {
   event.preventDefault();
   if (!event.target.classList.contains("gallery__image")) {
-    return;
+    
   }
 }
 const lightbox = new SimpleLightbox(".gallery a", {
