@@ -12,3 +12,32 @@ console.log(galleryItems);
 // Для этого ознакомься с документацией SimpleLightbox - в первую очередь секции «Usage» и «Markup».
 // Посмотри в документации секцию «Options» и добавь отображение подписей к изображениям из атрибута alt. 
 // Пусть подпись будет снизу и появляется через 250 миллисекунд после открытия изображения.
+function CreateGalleryCollection(arr) {
+  
+    return arr.map(({ preview, original, description }) => {
+        return `
+        <li class="gallery__item">
+           <a class="gallery__link" href="${original}">
+           <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"/>
+            </a>
+        </li>`})
+        .join('')
+    
+};
+const container = document.querySelector('.gallery')
+const img = CreateGalleryCollection(galleryItems);
+container.insertAdjacentHTML('beforeend', img)
+container.addEventListener('click', nameImages)
+
+function nameImages(event) {
+  event.preventDefault();
+  if (!event.target.classList.contains("gallery__image")) {
+    return;
+  }
+}
+const lightbox = new SimpleLightbox(".gallery a", {
+  scrollZoom: true,
+  captionDelay: 250,
+  captionsData: "alt",
+  doubleTapZoom: 2,
+});

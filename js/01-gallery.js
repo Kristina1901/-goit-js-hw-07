@@ -16,21 +16,21 @@ function CreateGalleryCollection(arr) {
     return arr.map(({ preview, original, description }) => {
         return `
         <li class="gallery__item">
-            <a class="gallery__link" href="${original}">
-                <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"/>
+           <a class="gallery__link" href="${original}">
+           <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"/>
             </a>
         </li>`})
         .join('')
     
 };
 const container = document.querySelector('.gallery')
-const img = CreateGalleryCollection(galleryItems);
-container.insertAdjacentHTML('beforeend', img)
+const imgItem = CreateGalleryCollection(galleryItems);
+container.insertAdjacentHTML('beforeend', imgItem)
 container.addEventListener('click', onClick)
 
 function onClick(event) {
-    evt.preventDefault();
-    if (!evt.target.classList.contains("gallery__item")) {
+    event.preventDefault();
+    if (!event.target.classList.contains("gallery__image")) {
         return;
     }
     openOriginalImgModal(event);
