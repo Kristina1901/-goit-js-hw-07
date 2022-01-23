@@ -11,7 +11,7 @@ console.log(galleryItems);
 // // Открытие модального окна по клику на элементе галереи. Для этого ознакомься с документацией и примерами.
 // // Замена значения атрибута src элемента <img> в модальном окне перед открытием. 
 // Используй готовую разметку модального окна с изображением из примеров библиотеки basicLightbox.
-function CreateGalleryCollection(arr) {
+function createGalleryCollection(arr) {
   
     return arr.map(({ preview, original, description }) => {
         return `
@@ -24,7 +24,7 @@ function CreateGalleryCollection(arr) {
     
 };
 const container = document.querySelector('.gallery')
-const imgItem = CreateGalleryCollection(galleryItems);
+const imgItem = createGalleryCollection(galleryItems);
 container.insertAdjacentHTML('beforeend', imgItem)
 container.addEventListener('click', onClick)
 
